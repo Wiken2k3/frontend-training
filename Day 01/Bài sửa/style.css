@@ -1,0 +1,116 @@
+/* Reset + base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f9fafb;
+  color: #222;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  background: #111; /* nền tối sang trọng */
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #facc15; /* vàng xu hướng */
+}
+
+header nav {
+  display: flex;
+  gap: 20px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+header nav a:hover {
+  color: #facc15;
+  transform: translateY(-2px);
+}
+
+/* Main */
+main {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.intro {
+  max-width: 600px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.intro h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.intro p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.intro img {
+  margin-top: 20px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: #fff;
+  border-radius: 16px;
+  font-size: 0.9rem;
+}
+/**
+Tips để giao diện chuyên nghiệp hơn
+
+✨ Typography: chọn font sans-serif hiện đại (Inter, Poppins, Manrope).
+✨ Color palette:
+
+Nền: trắng / xám sáng (#f9fafb).
+
+Header/Footer: tối (#111).
+
+Accent: vàng (#facc15) hoặc xanh ngọc (#00e6b8).
+✨ UI trends 2025:
+
+Border radius to (16–24px).
+
+Shadow nhẹ nhàng (soft UI).
+
+Hover animation mượt (scale, translate).
+✨ Responsive-first: dùng max-width cho container và flex để mobile vẫn đẹp.
+✨ Content highlight: thêm icon nhỏ (emoji hoặc SVG) để sinh động hơn.
+ */
