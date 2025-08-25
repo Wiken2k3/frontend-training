@@ -1,3 +1,4 @@
+/* Reset nhỏ cho sạch */
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +13,7 @@ body {
   padding: 20px;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -31,9 +33,10 @@ nav a {
 }
 
 nav a:hover {
-  color: #facc15;
+  color: #facc15; /* vàng xu hướng */
 }
 
+/* Section */
 .intro {
   margin: 40px auto;
   max-width: 600px;
