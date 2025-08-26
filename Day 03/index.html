@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 3 - JavaScript DOM</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    button { padding: 10px 20px; margin: 10px; border-radius: 8px; border: none; cursor: pointer; }
+    #colorBox { width: 150px; height: 150px; background: teal; margin: 20px auto; border-radius: 12px; }
+  </style>
+</head>
+<body>
+  <h1 id="welcome">Welcome!</h1>
+  <button onclick="changeText()">Đổi chữ</button>
+  <button onclick="changeColor()">Đổi màu box</button>
+  <button onclick="toggleBox()">Ẩn/Hiện box</button>
+
+  <div id="colorBox"></div>
+
+  <script>
+    function changeText() {
+      document.getElementById("welcome").innerText = "Xin chào, mình là Tuan 🚀";
+    }
+
+    function changeColor() {
+      let box = document.getElementById("colorBox");
+      let colors = ["teal", "orange", "purple", "crimson", "gold"];
+      let randomColor = colors[Math.floor(Math.random() * colors.length)];
+      box.style.background = randomColor;
+    }
+
+    function toggleBox() {
+      let box = document.getElementById("colorBox");
+      if (box.style.display === "none") {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
