@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 3 - JavaScript DOM</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      padding: 40px; 
+      background: linear-gradient(135deg, #f5f5f5, #d0f0f3);
+    }
+    button { 
+      padding: 10px 20px; 
+      margin: 10px; 
+      border-radius: 8px; 
+      border: none; 
+      cursor: pointer; 
+      background: teal; 
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background: darkslategray;
+    }
+    #colorBox { 
+      width: 150px; 
+      height: 150px; 
+      background: teal; 
+      margin: 20px auto; 
+      border-radius: 12px; 
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="welcome">Welcome!</h1>
+
+  <!-- Các nút -->
+  <button onclick="changeText()">Đổi chữ</button>
+  <button onclick="changeColor()">Đổi màu box</button>
+  <button onclick="toggleBox()">Ẩn/Hiện box</button>
+  <button onclick="resizeBox()">Phóng to/Thu nhỏ box</button>
+  <button onclick="resetAll()">Reset</button>
+
+  <!-- Box hiển thị -->
+  <div id="colorBox"></div>
+
+  <script>
+    // 📌 Hàm đổi chữ trong thẻ <h1>
+    function changeText() {
+      document.getElementById("welcome").innerText = "Xin chào, mình là Tuan 🚀";
+    }
+
+    // 📌 Hàm đổi màu box ngẫu nhiên
+    function changeColor() {
+      let box = document.getElementById("colorBox");
+      let colors = ["teal", "orange", "purple", "crimson", "gold", "blue", "green"];
+      let randomColor = colors[Math.floor(Math.random() * colors.length)];
+      box.style.background = randomColor;
+    }
+
+    // 📌 Hàm ẩn hoặc hiện box
+    function toggleBox() {
+      let box = document.getElementById("colorBox");
+      box.style.display = (box.style.display === "none") ? "block" : "none";
+    }
+
+    // 📌 Hàm phóng to / thu nhỏ box
+    function resizeBox() {
+      let box = document.getElementById("colorBox");
+      if (box.style.width === "150px") {
+        box.style.width = "250px";
+        box.style.height = "250px";
+      } else {
+        box.style.width = "150px";
+        box.style.height = "150px";
+      }
+    }
+
+    // 📌 Hàm reset về mặc định
+    function resetAll() {
+      document.getElementById("welcome").innerText = "Welcome!";
+      let box = document.getElementById("colorBox");
+      box.style.display = "block";
+      box.style.background = "teal";
+      box.style.width = "150px";
+      box.style.height = "150px";
+    }
+  </script>
+</body>
+</html>
