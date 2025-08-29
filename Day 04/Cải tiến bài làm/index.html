@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 4 - Form Validation</title>
+  <style>
+    /* RESET CƠ BẢN */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0072ff;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border 0.3s, background 0.3s;
+    }
+
+    input:focus {
+      border-color: #0072ff;
+      outline: none;
+      background: #f0f8ff;
+    }
+
+    input.error-input {
+      border-color: crimson;
+      background: #ffecec;
+    }
+
+    input.success-input {
+      border-color: green;
+      background: #ecffec;
+    }
+
+    .error {
+      color: crimson;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+      margin-top: 15px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .success.show {
+      opacity: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0072ff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0056cc;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="username">Tên đăng nhập</label>
+        <input type="text" id="username" placeholder="Nhập tên của bạn">
+        <div id="userError" class="error"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Nhập email của bạn">
+        <div id="emailError" class="error"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" placeholder="Nhập mật khẩu">
+        <div id="passError" class="error"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Xác nhận mật khẩu</label>
+        <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu">
+        <div id="confirmPassError" class="error"></div>
+      </div>
+
+      <button type="submit">Đăng ký</button>
+      <div id="successMsg" class="success"></div>
+    </form>
+  </div>
+
+  <script>
+    // Xử lý form
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Lấy input
+      let username = document.getElementById("username");
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");
+      let confirmPassword = document.getElementById("confirmPassword");
+
+      // Lấy div thông báo
+      let userError = document.getElementById("userError");
+      let emailError = document.getElementById("emailError");
+      let passError = document.getElementById("passError");
+      let confirmPassError = document.getElementById("confirmPassError");
+      let successMsg = document.getElementById("successMsg");
+
+      // Reset
+      [username,email,password,confirmPassword].forEach(i=>{
+        i.classList.remove("error-input","success-input");
+      });
+      [userError,emailError,passError,confirmPassError].forEach(e=>e.innerText="");
+      successMsg.innerText="";
+      successMsg.classList.remove("show");
+
+      let isValid = true;
+
+      // Validate username
+      if (username.value.trim().length < 3) {
+        userError.innerText = "Tên đăng nhập phải ≥ 3 ký tự!";
+        username.classList.add("error-input");
+        isValid = false;
+      } else {
+        username.classList.add("success-input");
+      }
+
+      // Validate email
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
+      if (!email.value.match(emailPattern)) {
+        emailError.innerText = "Email không hợp lệ!";
+        email.classList.add("error-input");
+        isValid = false;
+      } else {
+        email.classList.add("success-input");
+      }
+
+      // Validate password
+      if (password.value.length < 6) {
+        passError.innerText = "Mật khẩu phải ≥ 6 ký tự!";
+        password.classList.add("error-input");
+        isValid = false;
+      } else {
+        password.classList.add("success-input");
+      }
+
+      // Validate confirm password
+      if (confirmPassword.value !== password.value || confirmPassword.value === "") {
+        confirmPassError.innerText = "Mật khẩu xác nhận không khớp!";
+        confirmPassword.classList.add("error-input");
+        isValid = false;
+      } else {
+        confirmPassword.classList.add("success-input");
+      }
+
+      // Nếu hợp lệ
+      if (isValid) {
+        successMsg.innerText = "🎉 Đăng ký thành công!";
+        successMsg.classList.add("show");
+        document.getElementById("signupForm").reset();
+      }
+    });
+  </script>
+</body>
+</html>
