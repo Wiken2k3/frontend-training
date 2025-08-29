@@ -226,3 +226,43 @@
   </script>
 </body>
 </html>
+<!-- Giải thích cải tiến
+1. Cấu trúc HTML
+
+Gói mỗi input trong .input-group (có label, input, error message) → dễ quản lý.
+
+Thêm label giúp form chuẩn accessibility.
+
+2. CSS UI/UX hiện đại
+
+linear-gradient làm background → trend.
+
+Input có highlight khi focus (màu xanh, nền sáng nhẹ).
+
+Thêm class .error-input và .success-input để đổi màu input khi sai/đúng.
+
+animation: fadeIn khi form xuất hiện → UI mượt.
+
+Thông báo thành công .success.show dùng opacity + transition để hiện dần.
+
+3. JavaScript rõ ràng
+
+Dùng classList.add/remove để toggle trạng thái input.
+
+Reset toàn bộ trước khi validate → tránh lỗi chồng.
+
+Regex email mở rộng .{2,} thay vì {2,3} (hỗ trợ .info, .shop, .vn).
+
+Reset form sau khi đăng ký thành công (form.reset()).
+
+🎯 Tips thiết kế đẹp & xu hướng 2025
+
+Card form bo tròn lớn (12px–16px) + bóng mờ nhẹ.
+
+Highlight màu chính (primary color) → đồng bộ với nút.
+
+UX trực quan: input báo màu khi sai/đúng.
+
+Animation nhẹ nhàng (fade, hover).
+
+Label thay vì placeholder duy nhất → dễ đọc hơn trên mobile. -->
