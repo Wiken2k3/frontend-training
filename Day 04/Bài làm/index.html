@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 4 - Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #d0f0f3, #fdfdfd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      color: teal;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: teal;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: darkslategray;
+    }
+    .error {
+      color: crimson;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Tên đăng nhập">
+      <div id="userError" class="error"></div>
+
+      <input type="email" id="email" placeholder="Email">
+      <div id="emailError" class="error"></div>
+
+      <input type="password" id="password" placeholder="Mật khẩu">
+      <div id="passError" class="error"></div>
+
+      <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu">
+      <div id="confirmPassError" class="error"></div>
+
+      <button type="submit">Đăng ký</button>
+      <div id="successMsg" class="success"></div>
+    </form>
+  </div>
+
+  <script>
+    // Hàm xử lý form
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Ngăn reload trang
+
+      // Lấy giá trị input
+      let username = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+
+      // Các div hiển thị lỗi/thành công
+      let userError = document.getElementById("userError");
+      let emailError = document.getElementById("emailError");
+      let passError = document.getElementById("passError");
+      let confirmPassError = document.getElementById("confirmPassError");
+      let successMsg = document.getElementById("successMsg");
+
+      // Reset thông báo cũ
+      userError.innerText = "";
+      emailError.innerText = "";
+      passError.innerText = "";
+      confirmPassError.innerText = "";
+      successMsg.innerText = "";
+
+      let isValid = true;
+
+      // Validate username
+      if (username.length < 3) {
+        userError.innerText = "Tên đăng nhập phải có ít nhất 3 ký tự!";
+        isValid = false;
+      }
+
+      // Validate email (regex cơ bản)
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        emailError.innerText = "Email không hợp lệ!";
+        isValid = false;
+      }
+
+      // Validate password
+      if (password.length < 6) {
+        passError.innerText = "Mật khẩu phải có ít nhất 6 ký tự!";
+        isValid = false;
+      }
+
+      // Validate confirm password
+      if (confirmPassword !== password) {
+        confirmPassError.innerText = "Mật khẩu xác nhận không khớp!";
+        isValid = false;
+      }
+
+      // Nếu hợp lệ
+      if (isValid) {
+        successMsg.innerText = "Đăng ký thành công 🎉";
+      }
+    });
+  </script>
+</body>
+</html>
+
+<!-- Giải thích nhanh
+
+HTML Form
+
+input type="text": nhập tên.
+
+input type="email": nhập email (HTML5 tự check email).
+
+input type="password": nhập mật khẩu.
+
+input type="password": nhập xác nhận mật khẩu.
+
+button type="submit": nút đăng ký.
+
+JavaScript
+
+event.preventDefault() → ngăn trang reload khi bấm Submit.
+
+.value.trim() → lấy giá trị input, bỏ khoảng trắng dư.
+
+if...else kiểm tra dữ liệu:
+
+Username ≥ 3 ký tự.
+
+Email hợp lệ (regex).
+
+Password ≥ 6 ký tự.
+
+Nếu sai → hiện .innerText lỗi.
+
+Nếu đúng → hiện "Đăng ký thành công 🎉". -->
