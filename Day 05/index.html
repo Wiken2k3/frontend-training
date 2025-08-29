@@ -1,0 +1,52 @@
+<!-- Lý thuyết
+
+CSS (Cascading Style Sheets) giúp trang web đẹp hơn.
+
+Cách gắn CSS:
+
+Inline CSS: viết trực tiếp trong thẻ HTML.
+
+<p style="color: red;">Xin chào</p>
+
+
+Internal CSS: viết trong thẻ <style> ở file HTML.
+
+<style>
+  p {
+    color: blue;
+  }
+</style>
+
+
+External CSS: tách ra file .css riêng (cách chuyên nghiệp nhất). -->
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Ngày 5 - CSS</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: darkblue;
+      text-align: center;
+    }
+    p {
+      color: #333;
+      font-size: 18px;
+    }
+    .highlight {    
+      color: crimson;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chào mừng đến với CSS!</h1>
+  <p>Đây là một đoạn văn <span class="highlight">có màu đỏ</span>.</p>
+</body>
+</html>
