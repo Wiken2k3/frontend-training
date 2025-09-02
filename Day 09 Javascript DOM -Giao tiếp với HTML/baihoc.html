@@ -1,0 +1,92 @@
+<!-- JavaScript DOM – Giao tiếp với HTML
+✅ 1. Từ vựng chuyên ngành – Vocabulary
+English	Vietnamese	Ghi nhớ dễ
+DOM	Mô hình đối tượng tài liệu	Cây HTML
+Element	Phần tử	Thẻ HTML (div, p, h1...)
+Node	Nút (mỗi thẻ hoặc text là 1 node)	Giống cây gia phả
+Select / Query	Chọn / Truy vấn	Tìm thẻ
+Manipulate	Thao tác (thêm, xóa, sửa...)	Động chạm vào HTML
+Event Listener	Trình lắng nghe sự kiện	Nghe sự kiện
+Click event	Sự kiện click chuột	Khi nhấn chuột
+Append / Remove	Thêm / Xóa phần tử vào DOM	Gắn vào / gỡ ra
+innerHTML / textContent	Nội dung HTML / Nội dung chữ	Hiển thị text
+✅ 2. Câu giao tiếp IT (luyện tiếng Anh chuyên ngành)
+English Sentence	Dịch tiếng Việt
+I manipulated the DOM to dynamically update the UI.	Tôi đã thao tác DOM để cập nhật giao diện động.
+We should attach an event listener to handle the button click.	Chúng ta nên gắn sự kiện click vào nút.
+This function appends a new element into the DOM tree.	Hàm này thêm phần tử mới vào cây DOM.
+✅ 3. Bài tập nhỏ – Tạo nút, nhấn vào sẽ hiện dòng chữ
+💡 Mục tiêu:
+
+Biết chọn thẻ HTML (query/select)
+
+Gắn sự kiện (event listener)
+
+Thêm phần tử mới vào DOM -->
+
+✅ Code mẫu:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 9 - DOM Practice</title>
+</head>
+<body>
+  <button id="btn">Click me</button>
+  <div id="container"></div>
+
+  <script>
+    // Chọn phần tử button và container
+    const button = document.getElementById("btn");
+    const container = document.getElementById("container");
+
+    // Gắn sự kiện click vào nút
+    button.addEventListener("click", () => {
+      const p = document.createElement("p"); // Tạo thẻ <p>
+      p.textContent = "Hello, DOM!"; // Thêm nội dung
+      container.appendChild(p); // Gắn vào thẻ div
+    });
+  </script>
+</body>
+</html>
+
+<!-- 
+👉 Kết quả: Mỗi lần bạn click, một dòng "Hello, DOM!" sẽ hiện ra bên dưới.
+
+✅ 4. Mini-exercise – Practice English
+❓ Dịch sang tiếng Anh:
+
+Tôi muốn thêm một phần tử mới vào trong DOM.
+👉 I want to add a new element to the DOM.
+
+Khi người dùng nhấn nút, tôi cần hiển thị một thông báo.
+👉 When the user clicks the button, I need to display a message.
+
+Tôi đã gắn sự kiện vào thẻ <div>.
+👉 I attached an event listener to the <div> element.
+
+✅ 5. Mẹo học nhanh – Tips
+
+✅ Hiểu DOM là gì?
+DOM giống như cây gia phả của HTML → Mỗi thẻ là một "node" (nút), có cha/con.
+
+✅ Nhớ 3 nhóm thao tác chính:
+
+Nhóm	Ghi nhớ	Ví dụ
+Select (Chọn)	Tìm phần tử	getElementById, querySelector
+Change (Thay đổi)	Sửa nội dung	textContent, innerHTML, style.color
+Event (Sự kiện)	Gắn hành vi	addEventListener("click", ...)
+
+✅ Thử ngay trên console trong trình duyệt (F12 → tab Console):
+
+document.querySelector("button").textContent = "New Text";
+
+
+✅ Practice hàng ngày:
+Tự tạo 1 bài nhỏ như:
+
+Click đổi màu nền
+
+Thêm danh sách khi nhấn nút
+
+Xoá phần tử khi bấm nút -->
