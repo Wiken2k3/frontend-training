@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini DOM Practice</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    #list {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🧪 Mini DOM Practice</h2>
+
+  <!-- Các nút thao tác -->
+  <button id="changeColorBtn">Đổi màu nền</button>
+  <button id="addItemBtn">Thêm mục</button>
+  <button id="clearListBtn">Xoá tất cả</button>
+
+  <!-- Danh sách hiển thị -->
+  <ul id="list"></ul>
+
+  <script>
+    // 1. Chọn các phần tử
+    const changeColorBtn = document.getElementById("changeColorBtn");
+    const addItemBtn = document.getElementById("addItemBtn");
+    const clearListBtn = document.getElementById("clearListBtn");
+    const list = document.getElementById("list");
+
+    // 2. Đổi màu nền khi click
+    changeColorBtn.addEventListener("click", () => {
+      const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+      document.body.style.backgroundColor = randomColor;
+    });
+
+    // 3. Thêm mục vào danh sách khi click
+    let count = 1;
+    addItemBtn.addEventListener("click", () => {
+      const li = document.createElement("li");
+      li.textContent = "Mục số " + count;
+      list.appendChild(li);
+      count++;
+    });
+
+    // 4. Xóa toàn bộ danh sách
+    clearListBtn.addEventListener("click", () => {
+      list.innerHTML = "";
+      count = 1;
+    });
+  </script>
+</body>
+</html>
