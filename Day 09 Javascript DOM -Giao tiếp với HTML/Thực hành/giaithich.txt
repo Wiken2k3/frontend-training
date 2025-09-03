@@ -1,0 +1,134 @@
+Tuyệt vời! Vì bạn mới bắt đầu học, nên mình sẽ **giải thích từng phần chi tiết** trong bài thực hành DOM ở trên. Cứ yên tâm, mình sẽ giải thích đơn giản, dễ hiểu như giáo viên hướng dẫn cho người mới.
+
+---
+
+## 🧪 BÀI TẬP DOM: 3 CHỨC NĂNG NHỎ
+
+### 🎯 Mục tiêu:
+
+* Biết **chọn phần tử** HTML bằng JavaScript
+* Biết **gắn sự kiện** (ví dụ: click chuột)
+* Biết **thêm, xoá, thay đổi** nội dung HTML bằng JavaScript
+
+---
+
+## ✅ 1. Giao diện HTML cơ bản
+
+### 📄 HTML (khung sườn của trang):
+
+```html
+<body>
+  <h2>🧪 Mini DOM Practice</h2>
+
+  <button id="changeColorBtn">Đổi màu nền</button>
+  <button id="addItemBtn">Thêm mục</button>
+  <button id="clearListBtn">Xoá tất cả</button>
+
+  <ul id="list"></ul>
+</body>
+```
+
+### 📝 Giải thích:
+
+* `<button>` là **nút bấm**
+* `id="..."` là **tên định danh** → dùng để tìm phần tử trong JavaScript
+* `<ul>` là **danh sách không thứ tự (unordered list)**
+* Chúng ta sẽ viết **JavaScript** để điều khiển 3 nút này
+
+---
+
+## ✅ 2. JavaScript – Gắn logic cho các nút
+
+### 👉 Bước 1: **Chọn phần tử trong HTML**
+
+```js
+const changeColorBtn = document.getElementById("changeColorBtn");
+const addItemBtn = document.getElementById("addItemBtn");
+const clearListBtn = document.getElementById("clearListBtn");
+const list = document.getElementById("list");
+```
+
+#### ✅ Giải thích:
+
+* `document.getElementById(...)` là cách **tìm thẻ HTML** theo `id`
+* Sau khi chọn, bạn có thể **gắn sự kiện, sửa nội dung, thêm/xoá**...
+
+---
+
+### 👉 Bước 2: **Đổi màu nền khi nhấn nút**
+
+```js
+changeColorBtn.addEventListener("click", () => {
+  const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+  document.body.style.backgroundColor = randomColor;
+});
+```
+
+#### ✅ Giải thích:
+
+* `addEventListener("click", ...)` = **gắn lắng nghe khi click chuột**
+* `Math.random()` tạo số ngẫu nhiên
+* `document.body.style.backgroundColor` = thay màu nền của toàn trang
+
+🎨 Mỗi lần click, màu nền sẽ thay đổi thành 1 màu ngẫu nhiên như "blue", "pink", "#a3b2ff", v.v.
+
+---
+
+### 👉 Bước 3: **Thêm mục mới vào danh sách**
+
+```js
+let count = 1;
+
+addItemBtn.addEventListener("click", () => {
+  const li = document.createElement("li");
+  li.textContent = "Mục số " + count;
+  list.appendChild(li);
+  count++;
+});
+```
+
+#### ✅ Giải thích:
+
+* `let count = 1;` để đếm số thứ tự mục
+* `document.createElement("li")` → tạo ra thẻ `<li>`
+* `li.textContent = "Mục số 1"` → gán nội dung chữ
+* `list.appendChild(li)` → gắn mục đó vào danh sách `<ul>`
+
+📌 Mỗi lần click "Thêm mục", nó sẽ thêm dòng như:
+
+```
+Mục số 1
+Mục số 2
+Mục số 3
+...
+```
+
+---
+
+### 👉 Bước 4: **Xoá toàn bộ danh sách**
+
+```js
+clearListBtn.addEventListener("click", () => {
+  list.innerHTML = "";
+  count = 1;
+});
+```
+
+#### ✅ Giải thích:
+
+* `list.innerHTML = ""` → xoá hết nội dung bên trong thẻ `<ul>`
+* Đặt lại `count = 1` để khi thêm lại, nó bắt đầu từ "Mục số 1"
+
+---
+
+## ✅ Tóm tắt ngắn gọn:
+
+| Hành động        | Code                  | Ý nghĩa                      |
+| ---------------- | --------------------- | ---------------------------- |
+| Chọn thẻ HTML    | `getElementById()`    | Tìm thẻ để thao tác          |
+| Gắn sự kiện      | `addEventListener()`  | Khi click thì làm gì         |
+| Tạo thẻ mới      | `createElement("li")` | Tạo dòng mới trong danh sách |
+| Thêm thẻ vào DOM | `appendChild()`       | Gắn thẻ vào danh sách        |
+| Xóa nội dung     | `innerHTML = ""`      | Xoá hết các dòng             |
+
+
