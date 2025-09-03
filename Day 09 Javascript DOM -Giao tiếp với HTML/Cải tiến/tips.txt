@@ -1,0 +1,9 @@
+Tips học DOM nhanh
+
+Luôn console.log() trước khi làm gì đó để biết mình đang thao tác đúng phần tử chưa.
+
+Bắt đầu từ chức năng nhỏ → test → sau đó mới thêm chức năng nâng cao.
+
+Đặt tên biến rõ ràng (list, count) sẽ dễ hiểu hơn về sau.
+
+Khi làm quen, hãy tự viết lại bằng tay (không copy) để nhớ lâu.

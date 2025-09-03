@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini DOM Practice</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      transition: background-color 0.5s ease;
+    }
+    #list {
+      margin-top: 10px;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+      margin: 5px 0;
+      padding: 8px;
+      background: #f2f2f2;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    li:hover {
+      background: #ddd;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h2>🧪 Mini DOM Practice (nâng cấp)</h2>
+
+  <button id="changeColorBtn">🎨 Đổi màu nền</button>
+  <button id="addItemBtn">➕ Thêm mục</button>
+  <button id="clearListBtn">🗑️ Xoá tất cả</button>
+
+  <ul id="list"></ul>
+
+  <script>
+    const changeColorBtn = document.getElementById("changeColorBtn");
+    const addItemBtn = document.getElementById("addItemBtn");
+    const clearListBtn = document.getElementById("clearListBtn");
+    const list = document.getElementById("list");
+
+    // 1. Đổi màu nền ngẫu nhiên
+    changeColorBtn.addEventListener("click", () => {
+      const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, "0");
+      document.body.style.backgroundColor = randomColor;
+    });
+
+    // 2. Thêm mục
+    let count = 1;
+    addItemBtn.addEventListener("click", () => {
+      const li = document.createElement("li");
+      li.textContent = `Mục số ${count}`;
+      
+      // Bấm vào mục => xoá mục
+      li.addEventListener("click", () => li.remove());
+
+      list.appendChild(li);
+      count++;
+    });
+
+    // 3. Xoá toàn bộ
+    clearListBtn.addEventListener("click", () => {
+      if (confirm("Bạn có chắc muốn xoá hết không?")) {
+        list.innerHTML = "";
+        count = 1;
+      }
+    });
+  </script>
+</body>
+</html>
