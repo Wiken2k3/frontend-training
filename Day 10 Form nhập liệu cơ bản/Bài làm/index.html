@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Đăng ký Nâng Cao</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f2f2f2;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #007bff;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin: 0 0 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Đăng ký</h2>
+
+    <input type="text" id="username" placeholder="Tên người dùng">
+    <div class="error" id="usernameError"></div>
+
+    <input type="email" id="email" placeholder="Email">
+    <div class="error" id="emailError"></div>
+
+    <input type="password" id="password" placeholder="Mật khẩu (≥ 6 ký tự)">
+    <div class="error" id="passwordError"></div>
+
+    <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu">
+    <div class="error" id="confirmPasswordError"></div>
+
+    <button id="registerBtn">Đăng ký</button>
+  </div>
+
+  <script>
+    const registerBtn = document.getElementById("registerBtn");
+
+    registerBtn.addEventListener("click", () => {
+      // Lấy dữ liệu
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Reset lỗi
+      document.getElementById("usernameError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("passwordError").textContent = "";
+      document.getElementById("confirmPasswordError").textContent = "";
+
+      let isValid = true;
+
+      // Kiểm tra tên người dùng
+      if (!username) {
+        document.getElementById("usernameError").textContent = "Tên người dùng không được để trống.";
+        isValid = false;
+      }
+
+      // Kiểm tra email hợp lệ
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        document.getElementById("emailError").textContent = "Email không được để trống.";
+        isValid = false;
+      } else if (!emailRegex.test(email)) {
+        document.getElementById("emailError").textContent = "Email không hợp lệ.";
+        isValid = false;
+      }
+
+      // Kiểm tra mật khẩu
+      if (!password) {
+        document.getElementById("passwordError").textContent = "Mật khẩu không được để trống.";
+        isValid = false;
+      } else if (password.length < 6) {
+        document.getElementById("passwordError").textContent = "Mật khẩu phải có ít nhất 6 ký tự.";
+        isValid = false;
+      }
+
+      // Kiểm tra xác nhận mật khẩu
+      if (confirmPassword !== password) {
+        document.getElementById("confirmPasswordError").textContent = "Mật khẩu không khớp.";
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // Nếu hợp lệ → in ra console và lưu localStorage
+      console.log("=== Thông tin đăng ký ===");
+      console.log("Tên người dùng:", username);
+      console.log("Email:", email);
+      console.log("Mật khẩu:", password);
+
+      // Lưu vào localStorage (giả lập)
+      const user = {
+        username,
+        email,
+        password
+      };
+      localStorage.setItem("user", JSON.stringify(user));
+
+      alert("Đăng ký thành công!");
+    });
+  </script>
+
+</body>
+</html>
